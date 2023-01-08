@@ -51,42 +51,45 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
         }
 
         fs.writeFile(jsonDirectory, JSON.stringify(tasks), 'utf8', (err) => {
-          res.status(500).json({
-            message: 'Something is wrong',
-            status: 500,
-            data: [],
-          });
-          reject();
-        });
-
-        res.status(201).json({
-          message: `Task is created`,
-          status: 201,
-          data: task,
-        });
-
-        resolve();
-      } else if (req.method === 'DELETE') {
-        const selectedTask = tasks.find((task) => task.id === id);
-        if (selectedTask) {
-          const filteredTask = tasks.filter((task) => task.id !== id);
-
-          fs.writeFile(jsonDirectory, JSON.stringify(filteredTask), 'utf8', (err) => {
+          if (err) {
             res.status(500).json({
               message: 'Something is wrong',
               status: 500,
               data: [],
             });
             reject();
-          });
-
-          res.status(200).json({
-            message: `Task is deleted`,
-            status: 200,
-            data: selectedTask,
+          }
+          res.status(201).json({
+            message: `Task is created`,
+            status: 201,
+            data: task,
           });
 
           resolve();
+        });
+      } else if (req.method === 'DELETE') {
+        const selectedTask = tasks.find((task) => task.id === id);
+        if (selectedTask) {
+          const filteredTask = tasks.filter((task) => task.id !== id);
+
+          fs.writeFile(jsonDirectory, JSON.stringify(filteredTask), 'utf8', (err) => {
+            if (err) {
+              res.status(500).json({
+                message: 'Something is wrong',
+                status: 500,
+                data: [],
+              });
+              reject();
+            }
+
+            res.status(200).json({
+              message: `Task is deleted`,
+              status: 200,
+              data: selectedTask,
+            });
+
+            resolve();
+          });
         } else {
           res.status(404).json({
             message: `Task with id: ${id} not found.`,
