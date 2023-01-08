@@ -1,0 +1,47 @@
+.container {
+  height: 40px;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  border-bottom: 2px solid var(--secondary-color);
+
+  transition: border-color 0.5s ease-out;
+
+  &:hover {
+    border-color: rgba(var(--main-color-value), 0.6);
+  }
+
+  & * {
+    padding: 0;
+    margin: 0;
+    color: var(--secondary-color-dark);
+    font-weight: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  h2 {
+    width: calc(100% - 8px);
+
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 12px;
+    font-weight: normal;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    color: var(--secondary-color-dark);
+  }
+}

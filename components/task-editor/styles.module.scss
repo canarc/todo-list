@@ -1,0 +1,16 @@
+.container {
+  margin-top: 0;
+  width: calc(100% - 112px);
+  height: 100%;
+  overflow: auto;
+  outline: none;
+  border: none;
+  padding: 32px 56px;
+
+  background-attachment: local;
+  background-image: linear-gradient(to right, white 10px, transparent 10px), linear-gradient(to left, white 10px, transparent 10px), repeating-linear-gradient(white, white 30px, var(--secondary-color-light) 30px, var(--secondary-color-light) 31px, white 31px);
+
+  line-height: 31px;
+  font-size: 24px;
+  color: var(--secondary-color-dark);
+}

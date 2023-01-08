@@ -1,0 +1,27 @@
+.container {
+  height: calc(100vh - 80px);
+  width: 100%;
+  max-width: 1280px;
+  margin: 4px auto;
+  display: flex;
+  box-sizing: border-box;
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.listContainer {
+  flex: 2;
+  background-color: var(--secondary-color);
+}
+
+.editorContainer {
+  background-color: white;
+  flex: 7;
+}
+
+@media (orientation: portrait) {
+  .editorContainer {
+    display: none;
+  }
+}

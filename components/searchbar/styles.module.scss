@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--secondary-color-light);
+  border-radius: 8px;
+  height: 32px;
+  width: 100%;
+  margin-right: 12px;
+
+  input {
+    outline: none;
+    background: none;
+    border: none;
+    width: 100%;
+  }
+
+  svg {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+}
