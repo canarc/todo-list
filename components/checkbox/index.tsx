@@ -8,8 +8,8 @@ const CheckBox = forwardRef<Ref, DetailedHTMLProps<InputHTMLAttributes<HTMLInput
   return (
     <>
       <div className={styles.container} style={{ ...props.style }}>
-        <input type="checkbox" ref={ref} id={props.id || 'checkbox'} {...props} />
-        <label htmlFor={props.id || 'checkbox'} />
+        <input type="checkbox" ref={ref} id={props.id} {...props} />
+        <label htmlFor={props.id} />
       </div>
     </>
   );

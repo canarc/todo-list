@@ -1,18 +1,21 @@
-import Task from '@/components/task';
-import TaskEditor from '@/components/task-editor';
-import TasklistHeader from '@/components/tasklist-header';
+'use client';
 import styles from './styles.module.scss';
-function Home({ id }: any) {
+import useScreenOrientation from '@/helpers/screenOrientation';
+import TaskListContainer from './TaskListContainer';
+import EditorContainer from './EditorContainer';
+import { useContext } from 'react';
+import { TaskContext } from '@/context/taskContext';
+import { TaskContextType } from '@/types/taskContextType';
+
+function HomeContainer() {
+  const { selectedTask } = (useContext(TaskContext) as TaskContextType) || {};
+  const isLandscape = (useScreenOrientation() || '') === 'landscape';
+
   return (
     <div className={styles.container}>
-      <div className={styles.listContainer}>
-        <TasklistHeader />
-        <Task title="Test deneme 123 naber nasılsın iyimisin fak" updatedAt={Date.now()} isCompleted={false} id="5" />
-      </div>
-      <div className={styles.editorContainer}>
-        <TaskEditor />
-      </div>
+      {(!selectedTask?.id && !isLandscape) || isLandscape ? <TaskListContainer /> : null}
+      {(selectedTask?.id && !isLandscape) || isLandscape ? <EditorContainer /> : null}
     </div>
   );
 }
-export default Home;
+export default HomeContainer;

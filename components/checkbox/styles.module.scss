@@ -7,7 +7,7 @@
 
 .container label {
   background-color: #fff;
-  border: 1px solid var(--secondary-color-light);
+  border: 1px solid var(--secondary-color);
   border-radius: 50%;
   cursor: pointer;
   height: 28px;
@@ -18,7 +18,7 @@
 }
 
 .container label:after {
-  border: 2px solid var(--secondary-color-light);
+  border: 2px solid var(--secondary-color);
   border-top: none;
   border-right: none;
 

@@ -6,22 +6,19 @@
   display: flex;
   box-sizing: border-box;
   border: 1px solid var(--secondary-color);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
 .listContainer {
   flex: 2;
-  background-color: var(--secondary-color);
+
+  background-color: var(--secondary-color-light);
+  overflow: auto;
 }
 
 .editorContainer {
   background-color: white;
-  flex: 7;
-}
-
-@media (orientation: portrait) {
-  .editorContainer {
-    display: none;
-  }
+  overflow: auto;
+  flex: 6;
 }
