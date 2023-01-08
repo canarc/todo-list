@@ -2,13 +2,18 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import { Task } from '../../../types/taskType';
 import { ResponseApi } from '../../../types/responseType';
+import tasks from '@/tasks.json';
+import { json } from 'stream/consumers';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseApi<Task | {}>>) {
   return new Promise<void>((resolve, reject) => {
+    const jsonDirectory = process.cwd() + '/tasks.json';
+
     const { query } = req;
     const { id } = query as { id: string };
 
-    fs.readFile('./tasks.json', 'utf8', (err, jsonString) => {
+    fs.readFile(jsonDirectory, 'utf8', (err, jsonString) => {
+      console.log(jsonString);
       let tasks: Task[] = JSON.parse(jsonString);
 
       if (err) {
@@ -45,7 +50,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
           tasks.push(task);
         }
 
-        fs.writeFile('./tasks.json', JSON.stringify(tasks), 'utf8', (err) => {
+        fs.writeFile(jsonDirectory, JSON.stringify(tasks), 'utf8', (err) => {
           res.status(500).json({
             message: 'Something is wrong',
             status: 500,
@@ -66,7 +71,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
         if (selectedTask) {
           const filteredTask = tasks.filter((task) => task.id !== id);
 
-          fs.writeFile('./tasks.json', JSON.stringify(filteredTask), 'utf8', (err) => {
+          fs.writeFile(jsonDirectory, JSON.stringify(filteredTask), 'utf8', (err) => {
             res.status(500).json({
               message: 'Something is wrong',
               status: 500,

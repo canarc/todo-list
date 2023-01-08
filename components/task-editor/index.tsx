@@ -1,25 +1,19 @@
 'use client';
 import wait from '@/helpers/wait';
-import { ChangeEvent, ChangeEventHandler, FC, useRef } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
-import { useRouter } from 'next/navigation';
-import { v1 as uuidv1 } from 'uuid';
 import { useContext } from 'react';
 import { TaskContextType } from '@/types/taskContextType';
 import { TaskContext } from '@/context/taskContext';
 import useScreenOrientation from '@/helpers/screenOrientation';
-import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import BackButton from '../backButton';
 
 const TaskEditor = () => {
   const isPortrait = useScreenOrientation() === 'portrait';
 
-  const router = useRouter();
-
   const { selectedTask, setSelectedTask, updateTask, createNewTask } = useContext(TaskContext) as TaskContextType;
 
-  console.log(selectedTask);
   const [placeholder, setPlaceholder] = useState('');
 
   const isFirstRender = useRef(true);
