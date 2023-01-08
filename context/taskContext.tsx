@@ -40,7 +40,7 @@ const TaskProvider: FC<PropsWithChildren<{ id?: string }>> = ({ children, id }) 
       setSelectedTask(undefined);
     }
 
-    setTasks((prevTasks) => prevTasks.filter((_task) => _task.id !== task.id));
+    setTasks((prevTasks) => prevTasks?.filter((_task) => _task.id !== task.id));
   };
 
   const updateTask = (task: Task) => {
