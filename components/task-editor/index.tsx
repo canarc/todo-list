@@ -26,7 +26,7 @@ const TaskEditor = () => {
 
   useEffect(() => {
     if (selectedTask) {
-      fetch('http://localhost:3000/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) })
+      fetch('/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) })
         .then((res) => res.json())
         .then((resp) => {
           if (resp.status === 201) {
@@ -35,7 +35,7 @@ const TaskEditor = () => {
         });
 
       const timeout = setTimeout(async () => {
-        const resp = await fetch('http://localhost:3000/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) }).then((res) => res.json());
+        const resp = await fetch('/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) }).then((res) => res.json());
 
         if (resp.status === 201) {
           updateTask(selectedTask);

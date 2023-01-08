@@ -25,7 +25,7 @@ const TaskProvider: FC<PropsWithChildren<{ id?: string }>> = ({ children, id }) 
   }, [selectedTask]);
 
   const getTasks = async () => {
-    const response = await fetch('http://localhost:3000/api/task/').then((res) => res.json());
+    const response = await fetch('/api/task/').then((res) => res.json());
     if (response?.status === 200) {
       setTasks(response?.data);
 

@@ -29,7 +29,7 @@ const Task: React.FC<TaskProps> = ({ task: { task: content, id, isCompleted, upd
 
   const onDelete = async (e: MouseEvent<SVGElement>) => {
     e.stopPropagation();
-    const resp = await fetch(`http://localhost:3000/api/task/${id}`, { method: 'DELETE' }).then((res) => res.json());
+    const resp = await fetch(`/api/task/${id}`, { method: 'DELETE' }).then((res) => res.json());
     if (resp.status === 200) {
       deleteTask(task);
     }
