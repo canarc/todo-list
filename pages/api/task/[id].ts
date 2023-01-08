@@ -2,12 +2,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import { Task } from '../../../types/taskType';
 import { ResponseApi } from '../../../types/responseType';
-import tasks from '@/tasks.json';
 import { json } from 'stream/consumers';
+import path from 'path';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseApi<Task | {}>>) {
   return new Promise<void>((resolve, reject) => {
-    const jsonDirectory = process.cwd() + '/tasks.json';
+    const jsonDirectory = process.cwd() + '/tmp/tasks.json';
 
     const { query } = req;
     const { id } = query as { id: string };
