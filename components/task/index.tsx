@@ -42,7 +42,7 @@ const Task: React.FC<TaskProps> = ({ task: { task: content, id, isCompleted, upd
         <h2>{content || 'Empty Task'}</h2>
         <h3>Updated at: {moment(updatedAt).fromNow()} </h3>
       </div>
-      <IoTrash onClick={onDelete} cursor="pointer" size={28} color="var(--main-color)" />
+      <IoTrash onClick={onDelete} cursor="pointer" size={28} color="var(--main-color)" style={{ marginRight: '8px' }} />
     </div>
   );
 };

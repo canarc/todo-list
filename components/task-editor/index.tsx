@@ -67,7 +67,7 @@ const TaskEditor = () => {
   };
 
   const changePlaceholder = async () => {
-    const sentence = 'Hello, welcome to my demo task management tool. \n \nYou can start to create task by clicking plus button on left above. \nor begin to type your task here \n\nI hope you like it.';
+    const sentence = 'Hello, welcome to my demo task management tool. \n \nYou can start to create task by clicking plus button on left above. \nor begin to type your task here \n\nI hope you like it. \n\nGreetings, Yiğitcan';
 
     for (const word of sentence.split(' ')) {
       await wait(word.length * 50);
