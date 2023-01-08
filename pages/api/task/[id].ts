@@ -13,7 +13,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
     const { id } = query as { id: string };
 
     fs.readFile(jsonDirectory, 'utf8', (err, jsonString) => {
-      console.log(jsonString);
       let tasks: Task[] = JSON.parse(jsonString);
 
       if (err) {
@@ -50,8 +49,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
           tasks.push(task);
         }
 
+        console.log(jsonDirectory);
+
         fs.writeFile(jsonDirectory, JSON.stringify(tasks), 'utf8', (err) => {
+          console.log(err);
+
           if (err) {
+            console.log(err);
             res.status(500).json({
               message: 'Something is wrong',
               status: 500,
