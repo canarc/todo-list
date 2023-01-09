@@ -30,6 +30,18 @@ const TaskEditor = () => {
           }
         });
     }
+
+    return () => {
+      if (selectedTask) {
+        fetch('/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) })
+          .then((res) => res.json())
+          .then((resp) => {
+            if (resp.status === 201) {
+              updateTask(selectedTask);
+            }
+          });
+      }
+    };
   }, []);
 
   useEffect(() => {
