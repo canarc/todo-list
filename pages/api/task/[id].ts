@@ -7,8 +7,9 @@ import path from 'path';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseApi<Task | {}>>) {
   return new Promise<void>((resolve, reject) => {
-    const jsonDirectory = process.cwd() + '/tmp/tasks.json';
+    const jsonDirectory = '/tmp/tasks.json';
 
+    console.log(process.cwd());
     const { query } = req;
     const { id } = query as { id: string };
 
