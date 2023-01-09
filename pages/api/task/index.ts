@@ -5,7 +5,7 @@ import { Task } from '@/types/taskType';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseApi<Task[]>>) {
   return new Promise<void>((resolve, reject) => {
-    const jsonDirectory = process.cwd() + '/tmp/tasks.json';
+    const jsonDirectory = '/tmp/tasks.json';
 
     fs.readFile(jsonDirectory, 'utf8', (err, jsonString) => {
       if (err) {
