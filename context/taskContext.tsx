@@ -44,7 +44,7 @@ const TaskProvider: FC<PropsWithChildren<{ id?: string }>> = ({ children, id }) 
   };
 
   const updateTask = (task: Task) => {
-    setTasks((prevTasks) => prevTasks.map((_task) => (_task.id === task.id ? task : _task)));
+    setTasks((prevTasks) => prevTasks.map((_task) => (_task.id === task.id ? { ...task, updatedAt: Date.now() } : _task)));
   };
 
   const createNewTask = () => {

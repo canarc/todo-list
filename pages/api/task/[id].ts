@@ -7,9 +7,8 @@ import path from 'path';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseApi<Task | {}>>) {
   return new Promise<void>((resolve, reject) => {
-    const jsonDirectory = '/tmp/tasks.json';
+    const jsonDirectory = process.cwd() + '/tasks.json';
 
-    console.log(process.cwd());
     const { query } = req;
     const { id } = query as { id: string };
 
@@ -50,13 +49,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Respon
           tasks.push(task);
         }
 
-        console.log(jsonDirectory);
-
         fs.writeFile(jsonDirectory, JSON.stringify(tasks), 'utf8', (err) => {
-          console.log(err);
-
           if (err) {
-            console.log(err);
             res.status(500).json({
               message: 'Something is wrong',
               status: 500,

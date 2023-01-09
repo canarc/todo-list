@@ -10,7 +10,9 @@ import useScreenOrientation from '@/helpers/screenOrientation';
 import BackButton from '../backButton';
 
 const TaskEditor = () => {
-  const isPortrait = useScreenOrientation() === 'portrait';
+  const orientation = useScreenOrientation();
+
+  const isPortrait = orientation === 'portrait';
 
   const { selectedTask, setSelectedTask, updateTask, createNewTask } = useContext(TaskContext) as TaskContextType;
 
@@ -27,14 +29,18 @@ const TaskEditor = () => {
             updateTask(selectedTask);
           }
         });
+    }
+  }, []);
 
+  useEffect(() => {
+    if (selectedTask) {
       const timeout = setTimeout(async () => {
         const resp = await fetch('/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) }).then((res) => res.json());
 
         if (resp.status === 201) {
           updateTask(selectedTask);
         }
-      }, 3000);
+      }, 700);
 
       return () => {
         clearTimeout(timeout);

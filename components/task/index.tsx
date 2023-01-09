@@ -37,13 +37,8 @@ const Task: React.FC<TaskProps> = ({ task: { task: content, id, isCompleted, upd
 
   const onCheck = async (e: ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-
-    const _selectedTask = { ...selectedTask!, isCompleted: !selectedTask?.isCompleted };
-
-    if (_selectedTask.id === id) {
-      setSelectedTask(_selectedTask);
-      return;
-    }
+    e.preventDefault();
+    const _selectedTask = { ...task!, isCompleted: !task?.isCompleted };
 
     const resp = await fetch(`/api/task/${id}`, { method: 'POST', body: JSON.stringify(_selectedTask) }).then((res) => res.json());
 
@@ -53,7 +48,7 @@ const Task: React.FC<TaskProps> = ({ task: { task: content, id, isCompleted, upd
   };
   return (
     <div id={'taskcontainer' + id} className={`${styles.container} ${id === selectedTask?.id && styles.selected}`} onClick={onClick}>
-      <CheckBox id={id} onChange={onCheck} checked={isCompleted} style={{ marginRight: '8px' }} />
+      <CheckBox id={id} onChange={onCheck} checked={isCompleted} style={{ marginRight: '8px', zIndex: 999 }} />
       <div className={styles.rightSubContainer}>
         <h2>{content || 'Empty Task'}</h2>
         <h3>Updated at: {moment(updatedAt).fromNow()} </h3>

@@ -6,12 +6,18 @@ type Ref = HTMLInputElement;
 
 const CheckBox = forwardRef<Ref, DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>>((props, ref) => {
   return (
-    <>
-      <div className={styles.container} style={{ ...props.style }}>
-        <input type="checkbox" ref={ref} id={props.id} {...props} />
-        <label htmlFor={props.id} />
-      </div>
-    </>
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        props.onChange?.(e as any);
+      }}
+      className={styles.container}
+      style={{ ...props.style }}
+    >
+      <input type="checkbox" ref={ref} id={props.id} {...props} />
+      <label htmlFor={props.id} />
+    </div>
   );
 });
 

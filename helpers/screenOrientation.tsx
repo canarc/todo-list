@@ -19,7 +19,7 @@ const useScreenOrientation = () => {
 };
 
 const getOrientation = () => {
-  return window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+  return window?.innerWidth > window?.innerHeight ? 'landscape' : 'portrait';
 };
 
 export default useScreenOrientation;
