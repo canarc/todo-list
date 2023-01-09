@@ -39,7 +39,7 @@ const TaskEditor = () => {
           .then((res) => res.json())
           .then((resp) => {
             if (resp.status === 201) {
-              updateTask(selectedTaskRef.current);
+              updateTask(selectedTaskRef.current!);
             }
           });
       }
