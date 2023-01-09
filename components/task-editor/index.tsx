@@ -20,6 +20,8 @@ const TaskEditor = () => {
 
   const isFirstRender = useRef(true);
 
+  const selectedTaskRef = useRef(selectedTask);
+
   useEffect(() => {
     if (selectedTask) {
       fetch('/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) })
@@ -32,12 +34,12 @@ const TaskEditor = () => {
     }
 
     return () => {
-      if (selectedTask) {
-        fetch('/api/task/' + selectedTask.id, { method: 'POST', body: JSON.stringify(selectedTask) })
+      if (selectedTaskRef.current) {
+        fetch('/api/task/' + selectedTaskRef.current.id, { method: 'POST', body: JSON.stringify(selectedTaskRef.current) })
           .then((res) => res.json())
           .then((resp) => {
             if (resp.status === 201) {
-              updateTask(selectedTask);
+              updateTask(selectedTaskRef.current);
             }
           });
       }
@@ -69,6 +71,7 @@ const TaskEditor = () => {
   }, []);
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    selectedTaskRef.current = { ...selectedTask!, task: e.target.value || '' };
     setSelectedTask({ ...selectedTask!, task: e.target.value || '' });
   };
 
