@@ -15,10 +15,6 @@ interface Props {
 function Layout({ children }: Props) {
   return (
     <html lang="tr" className={fontFamily.className}>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
-        <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/outline.css" />
-      </Head>
       <body className="container">
         <Header />
         {children}
